@@ -275,7 +275,7 @@
         }
       }
     },
-    "/executedTestCase": {
+    "/executedtestcase/{id}/status": {
       "put": {
         "summary": "Atualiza o Status dos casos de teste",
         "tags": ["Executed Test Cases"],
@@ -291,6 +291,34 @@
           }
         }
       }
+   },
+   "/reports/testcase/export/:format": {
+    "get": {
+      "summary": "Exporta os casos de teste para CSV",
+      "tags": ["Reports"],
+      "responses": {
+        "200": {
+          "description": "Exportação bem-sucedida do CSV"
+        },
+        "500": {
+          "description": "Erro interno do servidor"
+        }
+      }
+    }
+   },  
+  "/reports/projects/export/:format": {
+   "get": {
+     "summary": "Exporta a lista de projetos para CSV",
+     "tags": ["Reports"],
+     "responses": {
+       "200": {
+         "description": "Exportação bem-sucedida do CSV"
+       },
+       "500": {
+         "description": "Erro interno do servidor"
+       }
+     }
    }
+  }  
   }
 }
