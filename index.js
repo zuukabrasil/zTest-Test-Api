@@ -1,9 +1,9 @@
-// index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
+
 
 
 const app = express();
@@ -19,12 +19,14 @@ connectDB();
 const projectRoutes = require('./src/routes/projectRoutes');
 const testCaseRoutes = require('./src/routes/testCaseRoutes');
 const executedTestCaseRoutes = require('./src/routes/executedTestCaseRoutes');
+const reportGenerateRoutes = require('./src/routes/reportGenerateRoutes')
 
 app.use('/api/projects', projectRoutes);
-app.use('/api/testCase', testCaseRoutes);
-app.use('/api/executedTestCase/:id/status', executedTestCaseRoutes);
+app.use('/api/testcase', testCaseRoutes);
+app.use('/api/executedtestcase/:id/status', executedTestCaseRoutes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
+app.use('/reports/testcases/export/:format', reportGenerateRoutes);
+app.use('/reports/projects/export/:format', reportGenerateRoutes);
 
 // Porta do servidor
 const PORT = process.env.PORT || 3000;
