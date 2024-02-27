@@ -1,0 +1,296 @@
+{
+  "0": "src/controllers/testCaseController.js",
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "zTst API",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "paths": {
+    "/projects": {
+      "get": {
+        "summary": "Retorna todos os projetos",
+        "tags": ["Project"],
+        "responses": {
+          "200": {
+            "description": "Operação bem-sucedida. Retorna a lista de projetos."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo projeto",
+        "tags": ["Project"],
+        "responses": {
+          "201": {
+            "description": "Projeto criado com sucesso."
+          },
+          "400": {
+            "description": "Solicitação inválida. Verifique os campos obrigatórios."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "summary": "Retorna um projeto específico pelo ID",
+        "tags": ["Project"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do projeto a ser retornado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem-sucedida. Retorna o projeto especificado."
+          },
+          "404": {
+            "description": "Projeto não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um projeto existente pelo ID",
+        "tags": ["Project"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do projeto a ser atualizado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projeto atualizado com sucesso."
+          },
+          "400": {
+            "description": "Solicitação inválida. Verifique os campos obrigatórios."
+          },
+          "404": {
+            "description": "Projeto não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Exclui um projeto existente pelo ID",
+        "tags": ["Project"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID do projeto a ser excluído",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projeto excluído com sucesso."
+          },
+          "404": {
+            "description": "Projeto não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/testcases": {
+      "get": {
+        "summary": "Retorna todos os casos de teste",
+        "tags": ["Test Cases"],
+        "responses": {
+          "200": {
+            "description": "Operação bem-sucedida. Retorna a lista de casos de teste.",
+            "content": {
+              "application/json": {
+                "example": []
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo caso de teste",
+        "tags": ["Test Cases"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "precondition": { "type": "string" },
+                  "expectedResult": { "type": "string" },
+                  "additionalData": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Caso de teste criado com sucesso."
+          },
+          "400": {
+            "description": "Solicitação inválida. Verifique os campos obrigatórios."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/testcases/{id}": {
+      "get": {
+        "summary": "Retorna um caso de teste específico pelo ID",
+        "tags": ["Test Cases"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do caso de teste a ser retornado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação bem-sucedida. Retorna o caso de teste especificado."
+          },
+          "404": {
+            "description": "Caso de teste não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um caso de teste existente pelo ID",
+        "tags": ["Test Cases"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do caso de teste a ser atualizado",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "precondition": { "type": "string" },
+                  "expectedResult": { "type": "string" },
+                  "additionalData": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Caso de teste atualizado com sucesso."
+          },
+          "400": {
+            "description": "Solicitação inválida. Verifique os campos obrigatórios."
+          },
+          "404": {
+            "description": "Caso de teste não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Exclui um caso de teste existente pelo ID",
+        "tags": ["Test Cases"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "ID do caso de teste a ser excluído",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Caso de teste excluído com sucesso."
+          },
+          "404": {
+            "description": "Caso de teste não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/executedTestCase": {
+      "put": {
+        "summary": "Atualiza o Status dos casos de teste",
+        "tags": ["Executed Test Cases"],
+        "responses": {
+          "200": {
+            "description": "Operação bem-sucedida. Retorna a lista de projetos."
+          },
+          "404": {
+            "description": "Caso de teste não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+   }
+  }
+}
